@@ -1,24 +1,48 @@
-# README
+# Rails Task Manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A small Rails application for creating, viewing, editing, and deleting tasks.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- Ruby 3.3.5 (see `.ruby-version`)
+- Bundler
+- SQLite 3 and the system packages needed to install the `sqlite3` Ruby gem
 
-* System dependencies
+The application uses SQLite for its database and does not require a separate database server or JavaScript build step.
 
-* Configuration
+## Setup
 
-* Database creation
+From the project directory, run:
 
-* Database initialization
+```sh
+bin/setup
+```
 
-* How to run the test suite
+This installs the gems, prepares the database, clears old logs and temporary files, and starts the development server. Open [http://localhost:3000](http://localhost:3000) to use the app.
 
-* Services (job queues, cache servers, search engines, etc.)
+To prepare the app without starting the server, use:
 
-* Deployment instructions
+```sh
+bin/setup --skip-server
+bin/dev
+```
 
-* ...
+`bin/dev` starts the Rails development server. The development SQLite database is stored at `storage/development.sqlite3`.
+
+## Tests and Checks
+
+Run the Rails test suite with:
+
+```sh
+bin/rails test
+```
+
+To run the full CI checks, including Ruby style and security audits, use:
+
+```sh
+bin/ci
+```
+
+## Production
+
+The included `Dockerfile` is intended for production deployments. It expects `RAILS_MASTER_KEY` to be supplied at runtime; see `config/deploy.yml` for the Kamal deployment configuration.
